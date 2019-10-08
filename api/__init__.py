@@ -20,6 +20,9 @@ config_object = os.environ.get('CONFIGURE')
     
 app = Flask(__name__)
 app.config.from_object(config_object)
+app.config['JWT_BLACKLIST_ENABLED'] = False
+app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
+
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY')
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(minutes=30)
 
@@ -27,12 +30,6 @@ mongo = PyMongo(app)
 flask_bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
-print(app.config['MONGO_URI'])
-
-@app.route('/', methods=['GET'])
-def getxz():
-
-    return 'dal'
 
 from .controllers.user import user
 app.register_blueprint(user)

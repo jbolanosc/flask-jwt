@@ -13,6 +13,8 @@ flask-bcrypt = "*"
 jsonschema = "*"
 bson = "*"
 flask-pymongo = {extras = ["srv", "tls"],version = "*"}
+itsdangerous = "*"
+flask-mail = "*"
 
 [requires]
 python_version = "3.6"
